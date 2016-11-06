@@ -1,0 +1,6 @@
+en:
+  slack_settings_label_notify: Notify
+  slack_settings_label_projects: Projects
+  field_slack_hook_url: Slack Hook URL
+  field_slack_channel_name: Slack Channel Name
+  field_slack_notify: Slack notify

@@ -1,0 +1,30 @@
+<p>
+	<label for="settings_slack_url">Slack URL</label>
+	<input type="text" id="settings_slack_url" size=80 value="<%= settings['slack_url'] %>" name="settings[slack_url]" />
+</p>
+
+<p>
+	Generate an "Incoming WebHook" URL from the <a href="https://slack.com/apps/build/custom-integration">apps configuration page on Slack</a>. This URL can be changed on a per-project basis by creating a <a href="/custom_fields/new?type=ProjectCustomField">project custom field</a> named "Slack URL" (without quotes).
+</p>
+
+<p>
+	<label for="settings_channel_name">Slack Channel</label>
+	<input type="text" id="settings_channel_name" value="<%= settings['channel_name'] %>" name="settings[channel_name]" />
+</p>
+
+<p>
+	The channel can be changed on a per-project basis by creating a
+	<a href="/custom_fields/new?type=ProjectCustomField">project custom field</a> named "Slack Channel" (without quotes). <strong>For public channels, this value should start with a <em>#</em>.</strong>
+</p>
+
+
+<p>
+    <%= content_tag(:label, l(:slack_settings_label_notify)) %>
+    <%= check_box_tag 'settings[notify]', 1, @settings[:notify] %>
+    Notify room members? Will trigger sound/popup based on user preferences.
+</p>
+
+<p>
+    <%= content_tag(:label, l(:slack_settings_label_projects)) %>
+    <%= select_tag 'settings[projects][]', project_tree_options_for_select(Project.active, :selected => Project.find_by_id(@settings[:projects])), :multiple => true, :size => Project.active.size %>
+</p>
